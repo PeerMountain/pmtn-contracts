@@ -24,7 +24,7 @@ contract CashierContractV2 is CashierContractV1 {
     event NewTokenMinted(
         address indexed holder,
         uint256 indexed tokenId,
-        string indexed tokenURI
+        string tokenURI
     );
     event Payment(
         address payer,

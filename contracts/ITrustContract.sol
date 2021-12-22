@@ -5,7 +5,7 @@ interface ITrustContract {
     event TokenMinted(
         address indexed recipient,
         uint256 indexed tokenId,
-        string indexed tokenURI
+        string tokenURI
     );
     event AuthorityGranted(address authority, address sender);
     event AuthorityRevoked(address authority, address sender);
