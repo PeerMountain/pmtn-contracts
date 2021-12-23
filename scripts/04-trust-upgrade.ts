@@ -1,7 +1,7 @@
 import hre from "hardhat";
+import { Config } from "../config";
 
-const cashierContractAddress = "0x7b7Ec4C333fC5E3D0B4001fC818491A7AE59a407";
-const trustContractAddress = "0x053965Ca43f024d701AA4bF5c39db8aAcfCCF1A0";
+const trustContractAddress = Config.TRUST_NFT_CONTRACT_ADDRESS;
 
 async function main() {
   try {

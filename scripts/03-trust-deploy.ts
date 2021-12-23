@@ -1,4 +1,5 @@
 import hre from "hardhat";
+import { Config } from "../config";
 
 // deployed at rsk testnet: 0x053965Ca43f024d701AA4bF5c39db8aAcfCCF1A0
 // trust token address rinkeby: 0xec5c94B5FF4d2A88e29bC1D2678a65347197f646
@@ -22,7 +23,7 @@ async function main() {
       " rBTC"
     );
 
-    const cashierContractAddress = "0x7b7Ec4C333fC5E3D0B4001fC818491A7AE59a407";
+    const cashierContractAddress = Config.CASHIER_CONTRACT_ADDRESS;
 
     const trustContract = await hre.ethers.getContractFactory("TrustContract");
     const trustInstance = await hre.upgrades.deployProxy(

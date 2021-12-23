@@ -2,6 +2,7 @@
 import "@nomiclabs/hardhat-waffle";
 import "@openzeppelin/hardhat-upgrades";
 import "@nomiclabs/hardhat-ethers";
+import { Config } from "./config";
 // import "@nomiclabs/hardhat-ganache";
 
 /**
@@ -26,16 +27,8 @@ module.exports = {
       ],
     },
     rsk_testnet: {
-      url: "https://public-node.testnet.rsk.co/",
-      accounts: [
-        "fc48b9a13841ced60421d44ff5a61bdba2414d68a528a8ac097e9d7c1b8c5ba7",
-      ],
-    },
-    rinkeby: {
-      url: "https://rinkeby.infura.io/v3/9414e4243903416eb3f4a6001d8be86d",
-      accounts: [
-        "c26dbd3bc5175040c63fadcba732fcf2a1117c88db152d193760b31603a800bd",
-      ],
+      url: Config.RSK_URL,
+      accounts: [Config.RSK_PRIVATE_KEY],
     },
   },
   settings: {
