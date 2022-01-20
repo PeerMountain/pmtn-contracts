@@ -20,6 +20,9 @@ async function main() {
       trustContractAddress
     );
 
+    const newOwner = await cashierContractInstance.connect(deployer).owner();
+    console.log("New Owner:", newOwner);
+
     await cashierContractInstance
       .connect(deployer)
       .transferOwnership("0x0CECeF6C199a8fdd67A901380f4bf907A6dC2A7F");

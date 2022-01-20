@@ -122,8 +122,12 @@ contract CashierContractV2 is CashierContractV1 {
         usedNonces[customer][nonce] = true;
         lastNonce[customer] = nonce;
 
-        uint256 margin = amount.mul(cashierPercentage).div(10**18);
-        uint256 aeMargin = amount.mul(enginePercentage).div(10**18);
+        uint256 margin = amount.mul(cashierPercentage).div(
+            10**(pmtnDecimals + 2)
+        );
+        uint256 aeMargin = amount.mul(enginePercentage).div(
+            10**(pmtnDecimals + 2)
+        );
 
         _transfer(customer, recipient, amount.sub(margin).sub(aeMargin));
         _transfer(customer, msg.sender, aeMargin);
@@ -201,8 +205,12 @@ contract CashierContractV2 is CashierContractV1 {
      *
      */
     function _deposit(uint256 amount, address from) internal {
-        uint256 margin = amount.mul(cashierPercentage).div(10**18);
-        uint256 aeMargin = amount.mul(enginePercentage).div(10**18);
+        uint256 margin = amount.mul(cashierPercentage).div(
+            10**(pmtnDecimals + 2)
+        );
+        uint256 aeMargin = amount.mul(enginePercentage).div(
+            10**(pmtnDecimals + 2)
+        );
 
         IERC20 dummyToken = IERC20(pmtnContract);
 
@@ -264,8 +272,12 @@ contract CashierContractV2 is CashierContractV1 {
      */
     function _withdraw(uint256 amount, address to) internal {
         balances[to] = balances[to].sub(amount, "not enough funds");
-        uint256 margin = amount.mul(cashierPercentage).div(10**18);
-        uint256 aeMargin = amount.mul(enginePercentage).div(10**18);
+        uint256 margin = amount.mul(cashierPercentage).div(
+            10**(pmtnDecimals + 2)
+        );
+        uint256 aeMargin = amount.mul(enginePercentage).div(
+            10**(pmtnDecimals + 2)
+        );
         uint256 withdrawAmount = amount.sub(margin).sub(aeMargin);
 
         balances[address(this)] = balances[address(this)].add(margin);
@@ -343,7 +355,9 @@ contract CashierContractV2 is CashierContractV1 {
         uint256 cashierCut = amount.mul(cashierPercentage).div(
             10**pmtnDecimals
         );
-        uint256 aeMargin = amount.mul(enginePercentage).div(10**18);
+        uint256 aeMargin = amount.mul(enginePercentage).div(
+            10**(pmtnDecimals + 2)
+        );
         _transfer(from, address(this), cashierCut);
         _transfer(from, msg.sender, aeMargin);
         _transfer(from, to, amount.sub(cashierCut).sub(aeMargin));
